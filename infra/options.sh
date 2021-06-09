@@ -1,8 +1,7 @@
 #! /bin/bash
 
 # Set GCP Project
-PROJECT_ID=agmsb-k8s
-
+PROJECT_ID=$(gcloud config list project --format=flattened | awk 'FNR == 1 {print $2}')
 gcloud config set project $PROJECT_ID
 
 # Set GCP Region

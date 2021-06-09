@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source ./options.sh
+source ./variables.sh
 
 gcloud config set project $PROJECT_ID
 
@@ -85,7 +85,7 @@ $ gcloud container clusters create $CLUSTER_NAME \
     --cluster-secondary-range-name=pod-net \
     --services-secondary-range-name=svc-net \
     --region=$REGION \
-    --num-nodes=1 \
+    --num-nodes=2 \
     --machine-type=$MACHINE_TYPE \
     --enable-autoscaling \
     --min-nodes=1 \

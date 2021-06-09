@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./options.sh
+source ./variables.sh
 
 cd ../cluster
 
@@ -33,17 +33,30 @@ git push -u origin master
 cd ../../infra
 
 cat << EOF >> config-management.yaml
+
 apiVersion: configmanagement.gke.io/v1
 kind: ConfigManagement
 metadata:
   name: config-management
 spec:
-  clusterName: $CLUSTER_NAME
+  clusterName: ${CLUSTER_NAME}
+  enableMultiRepo: true
+
+EOF
+
+cat << EOF >> root-sync.yaml
+apiVersion: configsync.gke.io/v1beta1
+kind: RootSync
+metadata:
+  name: root-sync
+  namespace: config-management-system
+spec:
   git:
-    syncRepo: ${REPO_URL}
-    syncBranch: master
-    secretType: gcenode
-    policyDir: "."
+    repo: {$REPO_URL}
+    branch: master
+    dir: "."
+    auth: gcenode
 EOF
 
 kubectl apply -f config-management.yaml
+kubectl apply -f root-sync.yaml

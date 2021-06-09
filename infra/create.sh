@@ -14,15 +14,15 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
   --role roles/logging.logWriter
 
 gcloud projects add-iam-policy-binding $PROJECT_ID \
-  --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:cs-node@$PROJECT_ID.iam.gserviceaccount.com" \
   --role roles/monitoring.metricWriter
 
 gcloud projects add-iam-policy-binding $PROJECT_ID \
-  --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:cs-node@$PROJECT_ID.iam.gserviceaccount.com" \
   --role roles/monitoring.viewer
 
 gcloud projects add-iam-policy-binding $PROJECT_ID \
-  --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member "serviceAccount:cs-node@$PROJECT_ID.iam.gserviceaccount.com" \
   --role roles/source.reader
 
 printf "\n Creating Google VPC \n"

@@ -6,7 +6,7 @@ cd ../cluster
 
 gsutil cp gs://config-management-release/released/latest/config-sync-operator.yaml .
 
-gcloud container clusters get-credentials sandbox-gke --region $REGION --project $PROJECT_ID
+gcloud container clusters get-credentials $CLUSTER_NAME --region $REGION --project $PROJECT_ID
 
 kubectl apply -f ./config-sync-operator.yaml
 
@@ -44,9 +44,3 @@ spec:
 EOF
 
 kubectl apply -f config-management.yaml
-
-
-
-
-
-

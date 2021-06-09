@@ -4,26 +4,26 @@ source ./options.sh
 
 gcloud config set project $PROJECT_ID
 
-# printf "\n Creating GCP Service Account for GKE"
+printf "\n Creating GCP Service Account for GKE"
 
-# gcloud iam service-accounts create cs-node \
-#   --display-name=cs-node
+gcloud iam service-accounts create cs-node \
+  --display-name=cs-node
 
-# gcloud projects add-iam-policy-binding $PROJECT_ID \
-#   --member "serviceAccount:cs-node@$PROJECT_ID.iam.gserviceaccount.com" \
-#   --role roles/logging.logWriter
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member "serviceAccount:cs-node@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role roles/logging.logWriter
 
-# gcloud projects add-iam-policy-binding $PROJECT_ID \
-#   --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
-#   --role roles/monitoring.metricWriter
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role roles/monitoring.metricWriter
 
-# gcloud projects add-iam-policy-binding $PROJECT_ID \
-#   --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
-#   --role roles/monitoring.viewer
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role roles/monitoring.viewer
 
-# gcloud projects add-iam-policy-binding $PROJECT_ID \
-#   --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
-#   --role roles/source.reader
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member "serviceAccount:sa-name@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role roles/source.reader
 
 printf "\n Creating Google VPC \n"
 
@@ -33,8 +33,8 @@ cat << EOM
 
 Currently Running:
 
-gcloud compute networks create $VPC_NAME
-    --project=$PROJECT_ID
+$ gcloud compute networks create $VPC_NAME \
+    --project=$PROJECT_ID \
     --subnet-mode=custom
 
 EOM
@@ -51,11 +51,11 @@ cat << EOM
 
 Currently Running:
 
-gcloud compute networks subnets create $SUBNET_NAME
-    --project=$PROJECT_ID
-    --region=$REGION
-    --network=$VPC_NAME
-    --range=10.4.0.0/22
+$ gcloud compute networks subnets create $SUBNET_NAME \
+    --project=$PROJECT_ID \
+    --region=$REGION \
+    --network=$VPC_NAME \
+    --range=10.4.0.0/22 \
     --secondary-range=pod-net=10.0.0.0/14,svc-net=10.4.4.0/22
 
 EOM
@@ -76,7 +76,7 @@ cat << EOM
 Currently Running:
 
 
-gcloud container clusters create $CLUSTER_NAME \
+$ gcloud container clusters create $CLUSTER_NAME \
     --project=$PROJECT_ID \
     --cluster-version=$CLUSTER_VERSION \
     --enable-ip-alias \
@@ -154,9 +154,3 @@ gcloud container clusters create $CLUSTER_NAME \
     --addons=HorizontalPodAutoscaling,NodeLocalDNS,GcePersistentDiskCsiDriver
 
 printf "\n We should be done here. TTFN! \n"
-
-
-
-
-
-

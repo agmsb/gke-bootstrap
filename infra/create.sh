@@ -4,7 +4,7 @@ source ./options.sh
 
 gcloud config set project $PROJECT_ID
 
-printf "\n Creating GCP Service Account for GKE"
+printf "\n Creating GCP Service Account for GKE \n"
 
 gcloud iam service-accounts create cs-node \
   --display-name=cs-node

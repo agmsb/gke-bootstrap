@@ -21,6 +21,9 @@ mv -- !(cs-repo) cs-repo
 
 cd cs-repo
 
+git config --global user.email "{USER}"
+git config --global user.name "Qwiklabs student"
+
 git add .
 
 git commit -m "Initialize config sync."

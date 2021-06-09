@@ -18,3 +18,7 @@ SUBNET_NAME=gke-vpc-subnet
 CLUSTER_NAME=sandbox-gke
 CLUSTER_VERSION=$(gcloud beta container get-server-config --region us-west1 --format='value(validMasterVersions[0])')
 MACHINE_TYPE=n1-standard-1
+
+# Set User
+USER=$(gcloud config list account --format=flattened | awk 'FNR ==1 {print $2}')
+

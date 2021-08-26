@@ -71,6 +71,18 @@ printf "\n Creating GKE Cluster in $REGION \n"
 
 sleep 3
 
+bq --location=$BQ_CONTINENT mk -d $BQ_DATASET
+
+cat << EOM
+
+Currently Running:
+
+bq --location=$BQ_CONTINENT mk -d $BQ_DATASET
+
+EOM
+
+sleep 3
+
 cat << EOM
 
 Currently Running:
@@ -101,6 +113,7 @@ $ gcloud container clusters create $CLUSTER_NAME \
     --enable-stackdriver-kubernetes \
     --enable-dataplane-v2 \
     --max-surge-upgrade=2 \
+    --resource-usage-bigquery-dataset $BQ_DATASET \
     --addons=HorizontalPodAutoscaling,NodeLocalDNS,GcePersistentDiskCsiDriver
 
 This will create a GKE Cluster with the following properties:
@@ -121,6 +134,7 @@ This will create a GKE Cluster with the following properties:
     NodeLocalDNSCache is enabled.
     Persistent Disk CSI Driver is enabled.
     HPA, VPA, and MPA are enabled.
+    Usage metering is enabled.
     
 EOM
 
@@ -151,6 +165,7 @@ gcloud container clusters create $CLUSTER_NAME \
     --max-surge-upgrade=2 \
     --scopes=cloud-source-repos-ro \
     --service-account "cs-node@$PROJECT_ID.iam.gserviceaccount.com" \
+    --resource-usage-bigquery-dataset $BQ_DATASET \
     --addons=HorizontalPodAutoscaling,NodeLocalDNS,GcePersistentDiskCsiDriver
 
 printf "\n We should be done here. Happy learning! \n"

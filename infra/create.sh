@@ -153,4 +153,4 @@ gcloud container clusters create $CLUSTER_NAME \
     --service-account "cs-node@$PROJECT_ID.iam.gserviceaccount.com" \
     --addons=HorizontalPodAutoscaling,NodeLocalDNS,GcePersistentDiskCsiDriver
 
-printf "\n We should be done here. TTFN! \n"
+printf "\n We should be done here. Happy learning! \n"

@@ -22,6 +22,6 @@ MACHINE_TYPE=n1-standard-1
 # Set User
 USER=$(gcloud config list account --format=flattened | awk 'FNR ==1 {print $2}')
 
-# Set BQ Dataset
+# Set BQ 
 BQ_DATASET=gke_usage_metering_$(date +%s)
 BQ_CONTINENT=US

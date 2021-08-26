@@ -1,7 +1,7 @@
 kind: ResourceQuota
 apiVersion: v1
 metadata:
-  name: quota
+  name: web-ip-quota
 spec:
   hard:
-    pods: "3"
+    pods: "10"
